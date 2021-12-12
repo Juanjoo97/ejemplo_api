@@ -8,8 +8,6 @@
       background="#ababab"
       img-width="1280"
       img-height="853"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
     >
       <b-carousel-slide
         img-src="https://baufest.com/wp-content/uploads/2020/04/Digitalizaci%C3%B3n_de_negocios_Las_empresas_tech_como_modelos_a_seguir_Mesa_de_trabajo_1.jpg"
@@ -79,8 +77,7 @@
 export default {
   data() {
     return {
-      slide: 0,
-      sliding: null,
+
     };
   },
 };

@@ -5,6 +5,7 @@ import Login from '../views/Auth/Login.vue'
 import Register from '../views/Auth/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Verification from '../views/Auth/Verification.vue'
+import datos from '../views/datos.vue'
 import { getAuth } from "firebase/auth";
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/Verification',
     name: 'Verification',
     component: Verification
+  },
+  {
+    path: '/datos',
+    name: 'datos',
+    component: datos
   },
   {
     path: '/dashboard',

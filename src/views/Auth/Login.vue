@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br><br><br>
     <div class="colums">
       <div class="column is-6 is-offset-3">
         <h3 class="title is-3" align="center">Iniciar sesion</h3>
@@ -37,6 +38,7 @@
         </div>
       </div>
     </div>
+    <br><br><br><br>
   </div>
 </template>
 <script>
