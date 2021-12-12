@@ -11,7 +11,8 @@
         <h1 class="title is-3" align="center">MyApp</h1>
         <hr />
 <br>
-<h4 >Supervision temperatura, humedad y operacion del actuador</h4>
+<h4 >Supervision Iluminación, humedad y operacion del actuador</h4>
+<br>
                   
               <button type="button" class="btn btn-primary" @click.prevent="encender" >On Moto bomba</button><p/>
               <button type="button" class="btn btn-primary" @click.prevent="apagar" >Off Moto bomba</button>
@@ -19,7 +20,7 @@
               <button type="button" class="button is-primary" @click.prevent="mostrar" >Mostrar</button>
 
               <br>
-              <div id="Tempe" > </div>
+              <div id="Ilu" > </div>
               <div id="Hume" > </div>  
                 </div>
                 </form>
@@ -66,25 +67,25 @@ export default {
   async encender() 
             {
               set(ref(database, 'home'), {
-              led1: "True",
+              moto: "True",
 
   });
 },
   async apagar() 
             {
               set(ref(database, 'home'), {
-              led1: "False",
+              moto: "False",
 
   });
  },
   async mostrar() 
             {
           const database = getDatabase();
-          const starCountRef = ref(database, 'home');
+          const starCountRef = ref(database, 'sensor');
           onValue(starCountRef, (snapshot) => {
           this.data = snapshot.val();
           console.log(this.data)
-          document.getElementById('Tempe').innerHTML= "Temperatura: " + snapshot.val().Temp + "°c";
+          document.getElementById('Ilu').innerHTML= "Sensor de luz " + snapshot.val().Ilu;
           document.getElementById('Hume').innerHTML= "Humedad: " + snapshot.val().Hume + "%";
   
  });
