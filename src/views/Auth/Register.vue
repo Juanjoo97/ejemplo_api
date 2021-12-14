@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <br><br>
+    <br /><br />    <br /><br /><br /><br/>
     <div class="colums">
       <div class="column is-6 is-offset-3">
         <h3 class="title is-3" align="center">Crear cuenta</h3>
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <br><br>
+    <br /><br />
   </div>
 </template>
 <script>
@@ -78,19 +78,17 @@ export default {
         createUserWithEmailAndPassword(auth, this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(this.name)
+            console.log(this.name);
             sendEmailVerification(auth.currentUser).then(() => {
               // Email verification sent!
               // ...
             });
-            
+
             if (user.emailVerified) {
               if (user) {
                 // The user object has basic properties such as display name, email, etc.
-                updateProfile( auth.currentUser, {
-                  
-                }).then(() => {
-                  this.name = ""
+                updateProfile(auth.currentUser, {}).then(() => {
+                  this.name = "";
                   this.email = "";
                   this.password = "";
                   console.log(user);

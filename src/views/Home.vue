@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <br /><br />
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -68,17 +69,13 @@
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       </b-carousel-slide>
     </b-carousel>
-
-
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-
-    };
+    return {};
   },
 };
 </script>

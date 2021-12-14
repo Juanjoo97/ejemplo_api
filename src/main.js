@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from "firebase/firestore"
+import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 
 
@@ -13,10 +13,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
-
-/* const db=firebase1.database();
-export const productCollection=db.ref("data/product");
-export default firebase1; */
 
 
 
@@ -31,7 +27,7 @@ const firebaseConfig ={
 
 };
 const ap = initializeApp(firebaseConfig);
-export const db = getFirestore();
+export const analytics = getAnalytics(app);
 export const database = getDatabase(ap);
 
 

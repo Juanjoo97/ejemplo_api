@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link class="navbar-item"  style="text-decoration: none; " to="/">
-        <h3 class="title is-3">MyApp</h3>
+      <router-link class="navbar-item" style="text-decoration: none" to="/">
+        <h3 class="titulo">MyApp</h3>
       </router-link>
 
       <a
@@ -26,14 +26,16 @@
       :class="{ 'is-active': isOpen }"
     >
       <div class="navbar-start">
-        <router-link class="navbar-item"  style="text-decoration: none;" to="/"> Home </router-link>
+        <router-link class="navbar-item" style="text-decoration: none" to="/">
+          Home
+        </router-link>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <template v-if="user">
             <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link"> {{ user.displayName ||user.email}} </a>
+              <a class="navbar-link"> {{ user.displayName || user.email }} </a>
 
               <div class="navbar-dropdown">
                 <a class="navbar-item" @click.prevent="dashboard">
@@ -47,10 +49,18 @@
           </template>
           <template v-else>
             <div class="buttons">
-              <router-link class="button is-primary"  style="text-decoration: none; " to="/register">
+              <router-link
+                class="button is-primary"
+                style="text-decoration: none"
+                to="/register"
+              >
                 <strong>Registrar</strong>
               </router-link>
-              <router-link class="button is-light"  style="text-decoration: none;" to="/login">
+              <router-link
+                class="button is-light"
+                style="text-decoration: none"
+                to="/login"
+              >
                 Iniciar sesion</router-link
               >
             </div>
@@ -103,3 +113,4 @@ export default {
   },
 };
 </script>
+

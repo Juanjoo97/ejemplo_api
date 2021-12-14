@@ -1,12 +1,11 @@
 <template>
   <div class="container">
-    <br><br><br>
+    <br /><br /><br />    <br /><br /><br />
     <div class="colums">
       <div class="column is-6 is-offset-3">
         <h3 class="title is-3" align="center">Iniciar sesion</h3>
         <hr />
         <form action="#" @submit.prevent="login">
-
           <div class="field">
             <label class="label">Correo Electronico:</label>
             <div class="control">
@@ -25,20 +24,22 @@
             </div>
           </div>
           <div class="has-text-centered">
-            <button type="submit" class="button is-primary">Iniciar sesion</button>
+            <button type="submit" class="button is-primary">
+              Iniciar sesion
+            </button>
           </div>
         </form>
         <br />
         <div
-          class="notification is-danger is-light "
+          class="notification is-danger is-light"
           v-if="error"
-          align="center" 
+          align="center"
         >
           {{ error }}
         </div>
       </div>
     </div>
-    <br><br><br><br>
+    <br /><br /><br /><br />
   </div>
 </template>
 <script>
@@ -61,16 +62,16 @@ export default {
         signInWithEmailAndPassword(auth, this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user)
-            if(user.emailVerified){
-            // Signed in
-            this.email=''
-            this.password=''
+            console.log(user);
+            if (user.emailVerified) {
+              // Signed in
+              this.email = "";
+              this.password = "";
 
-            this.$router.push({name: 'Dashboard'})
-            // ...
-            }else{
-            this.$router.push({name: 'Verification'})  
+              this.$router.push({ name: "Dashboard" });
+              // ...
+            } else {
+              this.$router.push({ name: "Verification" });
             }
           })
           .catch((error) => {
@@ -79,7 +80,6 @@ export default {
             this.errorMessage = error.message;
             // ..
           });
-
       } else {
         this.error = "Todos los campos son requeridos";
       }
