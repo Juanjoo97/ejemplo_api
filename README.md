@@ -1,5 +1,5 @@
 # ejemplo_api
-project using vue for fronted and backed development using firebase
+Project using vue for fronted and backed development using firebase
 
 ## Project setup
 ```
