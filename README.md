@@ -1,4 +1,5 @@
 # ejemplo_api
+project using vue for fronted and backed development using firebase
 
 ## Project setup
 ```
@@ -15,10 +16,10 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Domain Hosting Firebase
+
+app-proyecto2021.web.app
+app-proyecto2021.firebaseapp.com
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
