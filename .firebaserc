@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "app-proyecto2021"
-  }
+    "default": "esp32-firebase-25a86",
+    "esp32": "esp32-firebase-25a86"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

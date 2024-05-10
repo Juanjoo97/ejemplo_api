@@ -18,10 +18,10 @@ npm run build
 
 ### Domain Hosting Firebase
 ```
-app-proyecto2021.web.app
+esp32-firebase-25a86.firebaseapp.com
 ```
 ```
-app-proyecto2021.firebaseapp.com
+esp32-firebase-25a86.web.app
 ```
 
 ### Customize configuration
