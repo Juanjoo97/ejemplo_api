@@ -63,14 +63,16 @@ export default {
 
     async encender() {
       set(ref(database, "home"), {
-        moto: "True",
+        moto: 1,
       });
+      console.log("Moto encendida");
       document.getElementById("Hume").style.background = "#FFD700";
     },
     async apagar() {
       set(ref(database, "home"), {
-        moto: "False",
+        moto: 0,
       });
+      console.log("Moto apaga");
       document.getElementById("Hume").style.background = "white";
     },
     async mostrar() {
@@ -83,6 +85,11 @@ export default {
           "Sensor de luz: " + snapshot.val().Ilu;
         document.getElementById("Hume").innerHTML =
           "Humedad: " + snapshot.val().Hume + "%";
+        if (this.motoState === 1) {
+          document.getElementById("Hume").style.background = "#FFD700";
+        } else {
+          document.getElementById("Hume").style.background = "white";
+        }
       });
     },
   },
