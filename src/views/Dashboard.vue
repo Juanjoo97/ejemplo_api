@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="colums">
+    <div class="columns">
       <div class="column is-6 is-offset-3">
         <br /><br /><br /><br /><br /><br />
 
@@ -13,34 +13,22 @@
               <h4>Supervision Iluminación, humedad y operacion del actuador</h4>
               <br />
 
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click.prevent="encender"
-              >
+              <button type="button" class="btn btn-primary" @click.prevent="encender">
                 On Moto bomba
               </button>
               <br /><br />
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click.prevent="apagar"
-              >
+              <button type="button" class="btn btn-primary" @click.prevent="apagar">
                 Off Moto bomba
               </button>
               <br /><br /><br />
-              <button
-                type="button"
-                class="button is-primary"
-                @click.prevent="mostrar"
-              >
+              <button type="button" class="button is-primary" @click.prevent="mostrar">
                 Mostrar
               </button>
 
               <br /><br />
               <div id="myDiv">
                 <div id="Ilu"></div>
-                <div id="Hume"></div>
+                <div id="Hume" :style="{ background: humeBackground }"></div>
               </div>
             </div>
           </form>
@@ -50,6 +38,7 @@
     <br /><br /><br /><br /><br /><br />
   </div>
 </template>
+
 <script>
 import { database } from "../main.js";
 import { ref, set, getDatabase, onValue } from "firebase/database";
@@ -57,49 +46,80 @@ export default {
   data() {
     return {
       newItem: "",
+      motoState: 0, // Estado de la moto (0: apagada, 1: encendida)
+      humeBackground: "white", // Color de fondo inicial de Hume
     };
   },
   methods: {
-
     async encender() {
-      set(ref(database, "home"), {
-        moto: 1,
-      });
-      console.log("Moto encendida");
-      document.getElementById("Hume").style.background = "#FFD700";
+      try {
+        await set(ref(database, "home"), {
+          moto: 1,
+        });
+        this.motoState = 1;
+        this.actualizarColorHume();
+      } catch (error) {
+        console.error("Error al encender la moto:", error);
+      }
     },
     async apagar() {
-      set(ref(database, "home"), {
-        moto: 0,
-      });
-      console.log("Moto apaga");
-      document.getElementById("Hume").style.background = "white";
+      try {
+        await set(ref(database, "home"), {
+          moto: 0,
+        });
+        this.motoState = 0;
+        this.actualizarColorHume();
+      } catch (error) {
+        console.error("Error al apagar la moto:", error);
+      }
     },
     async mostrar() {
       const database = getDatabase();
       const starCountRef = ref(database, "sensor");
       onValue(starCountRef, (snapshot) => {
         this.data = snapshot.val();
-        console.log(this.data);
         document.getElementById("Ilu").innerHTML =
           "Sensor de luz: " + snapshot.val().Ilu;
         document.getElementById("Hume").innerHTML =
           "Humedad: " + snapshot.val().Hume + "%";
+        
+        // Actualizar el color de fondo de Hume según el estado de la moto
+        this.actualizarColorHume();
+      });
+      
+      // Llamar actualizarColorHume() al inicio para asegurar que se actualice correctamente
+      this.actualizarColorHume();
+    },
+    actualizarColorHume() {
+      // Obtener el estado actual de moto desde la base de datos
+      const database = getDatabase();
+      const homeRef = ref(database, "home/moto");
+      onValue(homeRef, (snapshot) => {
+        this.motoState = snapshot.val();
         if (this.motoState === 1) {
-          document.getElementById("Hume").style.background = "#FFD700";
+          this.humeBackground = "#FFD700"; // Amarillo
         } else {
-          document.getElementById("Hume").style.background = "white";
+          this.humeBackground = "white"; // Blanco
         }
       });
     },
   },
+  created() {
+    // Llamar a mostrar() al inicio para obtener los datos iniciales
+    this.mostrar();
+  },
 };
-</script> 
+</script>
 
 <style>
 #myDiv {
   width: 400px;
   height: 50px;
   border: 1px solid black;
+}
+#Hume {
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s ease;
 }
 </style>
